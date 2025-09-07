@@ -10,6 +10,7 @@ const empreendimentos = [
         area: "120,54 m²",
         vagas: "2 vagas",
         preco: "R$ 850.000",
+        porcentagemObra: 100,
         image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=250&fit=crop"
     },
     {
@@ -22,6 +23,7 @@ const empreendimentos = [
         area: "67,84 a 128,26 m²",
         vagas: "2 vagas",
         preco: "R$ 650.000",
+        porcentagemObra: 25,
         image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=250&fit=crop"
     },
     {
@@ -34,6 +36,7 @@ const empreendimentos = [
         area: "75,90 a 128,94 m²",
         vagas: "2 vagas",
         preco: "R$ 720.000",
+        porcentagemObra: 35,
         image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=250&fit=crop"
     },
     {
@@ -46,6 +49,7 @@ const empreendimentos = [
         area: "45,30 m²",
         vagas: "1 vaga",
         preco: "R$ 380.000",
+        porcentagemObra: 45,
         image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&h=250&fit=crop"
     },
     {
@@ -58,6 +62,7 @@ const empreendimentos = [
         area: "180,75 m²",
         vagas: "3 vagas",
         preco: "R$ 1.200.000",
+        porcentagemObra: 50,
         image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=250&fit=crop"
     },
     {
@@ -70,6 +75,7 @@ const empreendimentos = [
         area: "85,40 m²",
         vagas: "2 vagas",
         preco: "R$ 580.000",
+        porcentagemObra: 60,
         image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=250&fit=crop"
     }
 ];
@@ -206,6 +212,16 @@ function createEmpreendimentoCard(empreendimento) {
                             <span>${empreendimento.vagas}</span>
                         </div>
                     </div>
+                    
+                    <div class="overlay-progress">
+                        <div class="progress-text">
+                            <span>Progresso da Obra</span>
+                            <span class="progress-percentage">${empreendimento.porcentagemObra}%</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: ${empreendimento.porcentagemObra}%"></div>
+                        </div>
+                    </div>
                 </div>
                 
                 <button class="overlay-button" onclick="verDetalhes(${empreendimento.id}); event.stopPropagation();">
@@ -234,6 +250,15 @@ function createEmpreendimentoCard(empreendimento) {
                     <span>${empreendimento.vagas}</span>
                 </div>
             </div>
+            
+            <div class="progress-text">
+                <span>Progresso da Obra</span>
+                <span class="progress-percentage">${empreendimento.porcentagemObra}%</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: ${empreendimento.porcentagemObra}%"></div>
+            </div>
+            
             <div class="card-price">
                 <strong style="color: #f39c12; font-size: 1.2rem;">${empreendimento.preco}</strong>
             </div>
@@ -242,6 +267,7 @@ function createEmpreendimentoCard(empreendimento) {
             </button>
         </div>
     `;
+    
     // Adicionar event listeners para efeitos especiais
     card.addEventListener('mouseenter', function() {
         const overlay = card.querySelector('.card-overlay');

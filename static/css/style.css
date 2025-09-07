@@ -934,6 +934,58 @@ body {
     opacity: 0.8;
 }
 
+
+/* Barra de progresso da obra */
+.progress-container {
+    margin: 15px 0;
+    background: #f0f0f0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+    height: 8px;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    border-radius: 20px;
+    transition: width 0.8s ease;
+    position: relative;
+}
+
+.progress-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-percentage {
+    color: #f39c12;
+    font-weight: 700;
+}
+
+/* Overlay progress */
+.overlay-progress {
+    margin: 10px 0;
+}
+
+.overlay-progress .progress-container {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.overlay-progress .progress-text {
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.overlay-progress .progress-percentage {
+    color: #f39c12;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hamburger {
