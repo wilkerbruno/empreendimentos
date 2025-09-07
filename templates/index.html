@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construtora Prime - Empreendimentos</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="static/images/divisions.jpeg" alt="Construtora Prime" class="logo">
+                    <span class="brand-text">DIVISIONS<span class="brand-sub">CONSULTORIAS</span></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#empreendimentos">Empreendimentos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>EMPREENDIMENTOS</h1>
+            <p>Encontre o imóvel dos seus sonhos</p>
+        </div>
+        
+        <!-- Filtros -->
+        <div class="filters-container">
+            <div class="container">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label>BAIRRO</label>
+                        <select id="bairro-filter">
+                            <option value="">Selecione</option>
+                            <option value="savassi">Savassi</option>
+                            <option value="lourdes">Lourdes</option>
+                            <option value="centro">Centro</option>
+                            <option value="funcionarios">Funcionários</option>
+                            <option value="belvedere">Belvedere</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>STATUS DO EMPREENDIMENTO</label>
+                        <select id="status-filter">
+                            <option value="">Selecione</option>
+                            <option value="lancamento">Lançamento</option>
+                            <option value="em-construcao">Em Construção</option>
+                            <option value="pronto">Pronto para Morar</option>
+                            <option value="financiado">Financiado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>TIPOLOGIA</label>
+                        <select id="tipologia-filter">
+                            <option value="">Selecione</option>
+                            <option value="1-suite">1 Suíte</option>
+                            <option value="2-suites">2 Suítes</option>
+                            <option value="3-suites">3 Suítes</option>
+                            <option value="4-suites">4 Suítes</option>
+                            <option value="cobertura">Cobertura</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="btn-clear" onclick="clearFilters()">LIMPAR FILTROS</button>
+                    <button class="btn-search" onclick="searchEmpreendimentos()">
+                        BUSCAR <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empreendimentos Section -->
+    <section id="empreendimentos" class="empreendimentos">
+        <div class="container">
+            <div class="loading" id="loading" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando empreendimentos...</p>
+            </div>
+            
+            <div class="empreendimentos-grid" id="empreendimentos-grid">
+                <!-- Os empreendimentos serão carregados dinamicamente -->
+            </div>
+            
+            <div class="no-results" id="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>Nenhum empreendimento encontrado</h3>
+                <p>Tente ajustar os filtros de busca.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5531999999999" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PRIME CONSTRUTORA</h3>
+                    <p>Transformando sonhos em realidade há mais de 20 anos.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone"></i> (31) 3333-4444</p>
+                    <p><i class="fas fa-envelope"></i> contato@primeconstrutora.com.br</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Belo Horizonte, MG</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#empreendimentos">Empreendimentos</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prime Construtora. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/script.js"></script>
+</body>
+</html>
