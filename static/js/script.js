@@ -452,6 +452,164 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+// Função para enviar formulário de contato
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactSubmit);
+    }
+});
+
+async function handleContactSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const submitBtn = form.querySelector('.btn-submit');
+    const feedback = document.getElementById('form-feedback');
+    const btnText = submitBtn.querySelector('.btn-text');
+    
+    // Mostrar loading
+    submitBtn.disabled = true;
+    btnText.textContent = 'ENVIANDO...';
+    feedback.style.display = 'none';
+    
+    // Coletar dados do formulário
+    const formData = new FormData(form);
+    const data = {
+        nome: formData.get('nome'),
+        email: formData.get('email'),
+        telefone: formData.get('telefone'),
+        mensagem: formData.get('mensagem'),
+        empreendimento_id: formData.get('empreendimento_id') || null
+    };
+    
+    try {
+        const response = await fetch('/api/contato', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Sucesso
+            feedback.className = 'form-feedback success';
+            feedback.textContent = result.message;
+            feedback.style.display = 'block';
+            
+            // Limpar formulário
+            form.reset();
+            
+            // Analytics
+            if (window.gtag) {
+                gtag('event', 'form_submit', {
+                    'form_name': 'contact',
+                    'success': true
+                });
+            }
+        } else {
+            throw new Error(result.message);
+        }
+        
+    } catch (error) {
+        // Erro
+        feedback.className = 'form-feedback error';
+        feedback.textContent = error.message || 'Erro ao enviar mensagem. Tente novamente.';
+        feedback.style.display = 'block';
+        
+        // Analytics
+        if (window.gtag) {
+            gtag('event', 'form_submit', {
+                'form_name': 'contact',
+                'success': false
+            });
+        }
+    } finally {
+        // Restaurar botão
+        submitBtn.disabled = false;
+        btnText.textContent = 'ENVIAR MENSAGEM';
+    }
+}
+
+// Máscara para telefone
+document.addEventListener('DOMContentLoaded', function() {
+    const telefoneInput = document.getElementById('telefone');
+    if (telefoneInput) {
+        telefoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length <= 11) {
+                if (value.length <= 10) {
+                    value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                } else {
+                    value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                }
+            }
+            
+            e.target.value = value;
+        });
+    }
+});
+
+// Animação dos números das estatísticas
+function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const finalValue = element.textContent;
+                const numericValue = parseInt(finalValue.replace(/\D/g, ''));
+                
+                if (!isNaN(numericValue)) {
+                    animateNumber(element, 0, numericValue, finalValue);
+                }
+                
+                observer.unobserve(element);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    statNumbers.forEach(stat => observer.observe(stat));
+}
+
+function animateNumber(element, start, end, originalText) {
+    const duration = 2000;
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const current = Math.floor(start + (end - start) * progress);
+        
+        if (originalText.includes('+')) {
+            element.textContent = current + '+';
+        } else if (originalText.includes('%')) {
+            element.textContent = current + '%';
+        } else {
+            element.textContent = current.toLocaleString();
+        }
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            element.textContent = originalText;
+        }
+    }
+    
+    requestAnimationFrame(update);
+}
+
+// Inicializar animações quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(animateStats, 500);
+});
+
 // Error handling global
 window.addEventListener('error', (event) => {
     console.error('Erro global capturado:', event.error);

@@ -19,6 +19,7 @@ EMPREENDIMENTOS = [
         "vagas": "2 vagas",
         "preco": 850000,
         "preco_formatado": "R$ 850.000",
+        "porcentagemObra": 15,
         "image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=250&fit=crop",
         "descricao": "Empreendimento moderno no coração da Savassi",
         "caracteristicas": [
@@ -43,6 +44,7 @@ EMPREENDIMENTOS = [
         "vagas": "2 vagas",
         "preco": 650000,
         "preco_formatado": "R$ 650.000",
+        "porcentagemObra": 65,
         "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=250&fit=crop",
         "descricao": "Torre moderna em Lourdes com vista panorâmica",
         "caracteristicas": [
@@ -67,6 +69,7 @@ EMPREENDIMENTOS = [
         "vagas": "2 vagas",
         "preco": 720000,
         "preco_formatado": "R$ 720.000",
+        "porcentagemObra": 100,
         "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=250&fit=crop",
         "descricao": "Residencial pronto para morar em Lourdes",
         "caracteristicas": [
@@ -91,6 +94,7 @@ EMPREENDIMENTOS = [
         "vagas": "1 vaga",
         "preco": 380000,
         "preco_formatado": "R$ 380.000",
+        "porcentagemObra": 100,
         "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&h=250&fit=crop",
         "descricao": "Apartamentos compactos no centro da cidade",
         "caracteristicas": [
@@ -103,12 +107,74 @@ EMPREENDIMENTOS = [
         "data_entrega": "2025-08-01",
         "financiamento": True,
         "construtora": "Prime Construtora"
+    },
+    {
+        "id": 5,
+        "nome": "BELVEDERE RESIDENCE",
+        "bairro": "belvedere",
+        "status": "lancamento",
+        "tipologia": "4-suites",
+        "suites": "4 suítes",
+        "area": "180,75 m²",
+        "vagas": "3 vagas",
+        "preco": 1200000,
+        "preco_formatado": "R$ 1.200.000",
+        "porcentagemObra": 25,
+        "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=250&fit=crop",
+        "descricao": "Residencial de luxo no Belvedere",
+        "caracteristicas": [
+            "Alto padrão",
+            "Vista panorâmica",
+            "Área de lazer completa",
+            "Spa e wellness",
+            "Concierge"
+        ],
+        "data_entrega": "2026-12-01",
+        "financiamento": True,
+        "construtora": "Prime Construtora"
+    },
+    {
+        "id": 6,
+        "nome": "FUNCIONÁRIOS TOWER",
+        "bairro": "funcionarios",
+        "status": "em-construcao",
+        "tipologia": "2-suites",
+        "suites": "2 suítes",
+        "area": "85,40 m²",
+        "vagas": "2 vagas",
+        "preco": 580000,
+        "preco_formatado": "R$ 580.000",
+        "porcentagemObra": 45,
+        "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=250&fit=crop",
+        "descricao": "Torre moderna no bairro Funcionários",
+        "caracteristicas": [
+            "Localização nobre",
+            "Próximo ao centro",
+            "Área gourmet",
+            "Academia",
+            "Rooftop"
+        ],
+        "data_entrega": "2026-03-01",
+        "financiamento": True,
+        "construtora": "Prime Construtora"
     }
 ]
+
+# Simulação de dados para contatos e interesses
+CONTATOS = []
+INTERESSES = []
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/sobre')
+def sobre():
+    return render_template('sobre.html')
+
+@app.route('/contato')
+def contato():
+    return render_template('contato.html')
 
 @app.route('/api/empreendimentos')
 def get_empreendimentos():
@@ -152,7 +218,7 @@ def get_empreendimento(empreendimento_id):
     })
 
 @app.route('/api/contato', methods=['POST'])
-def contato():
+def api_contato():
     """Recebe mensagens de contato"""
     data = request.get_json()
     
@@ -262,10 +328,6 @@ def get_stats():
             'preco_medio': preco_medio
         }
     })
-
-# Simulação de dados para contatos e interesses
-CONTATOS = []
-INTERESSES = []
 
 # Error handlers
 @app.errorhandler(404)

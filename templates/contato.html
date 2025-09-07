@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}Contato - Construtora Prime{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>ENTRE EM CONTATO</h1>
+            <p>Estamos prontos para realizar o seu sonho</p>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section class="contato">
+        <div class="container">
+            <div class="contato-content">
+                <div class="contato-grid">
+                    <div class="contato-info">
+                        <h3>Fale Conosco</h3>
+                        <p>Nossa equipe está pronta para atendê-lo e esclarecer todas as suas dúvidas sobre nossos empreendimentos.</p>
+                        
+                        <div class="contato-items">
+                            <div class="contato-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Endereço</h4>
+                                    <p>Rua da Bahia, 1234 - Centro<br>Belo Horizonte, MG - CEP: 30160-011</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contato-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h4>Telefone</h4>
+                                    <p>(31) 3333-4444<br>(31) 99999-9999</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contato-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h4>E-mail</h4>
+                                    <p>contato@primeconstrutora.com.br<br>vendas@primeconstrutora.com.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contato-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Horário de Atendimento</h4>
+                                    <p>Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 14h</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contato-social">
+                            <h4>Siga-nos nas Redes Sociais</h4>
+                            <div class="social-links">
+                                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contato-form">
+                        <form id="contactForm" class="form-contato">
+                            <h3>Envie sua Mensagem</h3>
+                            
+                            <div class="form-group">
+                                <label for="nome">Nome Completo *</label>
+                                <input type="text" id="nome" name="nome" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">E-mail *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefone">Telefone *</label>
+                                    <input type="tel" id="telefone" name="telefone" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="empreendimento">Empreendimento de Interesse</label>
+                                <select id="empreendimento" name="empreendimento_id">
+                                    <option value="">Selecione um empreendimento</option>
+                                    <option value="1">UPTOWN - Savassi</option>
+                                    <option value="2">DOWNTOWN - Lourdes</option>
+                                    <option value="3">PARADISO LOURDES - Lourdes</option>
+                                    <option value="4">ELITE CENTER - Centro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem *</label>
+                                <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Conte-nos como podemos ajudá-lo..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">
+                                <span class="btn-text">ENVIAR MENSAGEM</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                            
+                            <div class="form-feedback" id="form-feedback"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa Section -->
+    <section class="mapa">
+        <div class="container">
+            <h3>Nossa Localização</h3>
+            <div class="mapa-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.8862583778986!2d-43.93804792528964!3d-19.92073458149616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa699de02081727%3A0xd7e7a55a7ad1cba!2sRua%20da%20Bahia%2C%201200%20-%20Centro%2C%20Belo%20Horizonte%20-%20MG!5e0!3m2!1spt!2sbr!4v1703280000000!5m2!1spt!2sbr" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Função para enviar formulário de contato
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', handleContactSubmit);
+        }
+        
+        // Máscara para telefone
+        const telefoneInput = document.getElementById('telefone');
+        if (telefoneInput) {
+            telefoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                if (value.length <= 11) {
+                    if (value.length <= 10) {
+                        value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                    } else {
+                        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                    }
+                }
+                
+                e.target.value = value;
+            });
+        }
+    });
+
+    async function handleContactSubmit(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const submitBtn = form.querySelector('.btn-submit');
+        const feedback = document.getElementById('form-feedback');
+        const btnText = submitBtn.querySelector('.btn-text');
+        
+        // Mostrar loading
+        submitBtn.disabled = true;
+        btnText.textContent = 'ENVIANDO...';
+        feedback.style.display = 'none';
+        
+        // Coletar dados do formulário
+        const formData = new FormData(form);
+        const data = {
+            nome: formData.get('nome'),
+            email: formData.get('email'),
+            telefone: formData.get('telefone'),
+            mensagem: formData.get('mensagem'),
+            empreendimento_id: formData.get('empreendimento_id') || null
+        };
+        
+        try {
+            const response = await fetch('/api/contato', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                // Sucesso
+                feedback.className = 'form-feedback success';
+                feedback.textContent = result.message;
+                feedback.style.display = 'block';
+                
+                // Limpar formulário
+                form.reset();
+                
+                // Analytics
+                if (window.gtag) {
+                    gtag('event', 'form_submit', {
+                        'form_name': 'contact',
+                        'success': true
+                    });
+                }
+            } else {
+                throw new Error(result.message);
+            }
+            
+        } catch (error) {
+            // Erro
+            feedback.className = 'form-feedback error';
+            feedback.textContent = error.message || 'Erro ao enviar mensagem. Tente novamente.';
+            feedback.style.display = 'block';
+            
+            // Analytics
+            if (window.gtag) {
+                gtag('event', 'form_submit', {
+                    'form_name': 'contact',
+                    'success': false
+                });
+            }
+        } finally {
+            // Restaurar botão
+            submitBtn.disabled = false;
+            btnText.textContent = 'ENVIAR MENSAGEM';
+        }
+    }
+</script>
+{% endblock %}
