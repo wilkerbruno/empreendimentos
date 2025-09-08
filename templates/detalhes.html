@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block title %}{{ empreendimento.nome }} - Construtora Prime{% endblock %}
+
+{% block head %}
+<!-- CSS específico da página de detalhes -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/detalhes.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="empreendimento-detalhes">
+    <div class="container">
+        <!-- Header do empreendimento -->
+        <div class="detalhes-header">
+            
+            <div class="detalhes-header">
+    <div class="header-pattern"></div>
+   
+    
+    <div class="container">
+        <div class="header-content">
+            <h1 class="empreendimento-title">{{ empreendimento.nome }}</h1>
+            <div class="empreendimento-subtitle">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{ empreendimento.bairro.title() }}, Belo Horizonte - MG</span>
+            </div>
+            
+            <div class="header-badges">
+                <div class="status-badge status-{{ empreendimento.status }}">
+                    <i class="fas fa-tag"></i>
+                    {% if empreendimento.status == 'lancamento' %}
+                        ÚLTIMAS UNIDADES
+                    {% elif empreendimento.status == 'em-construcao' %}
+                        EM CONSTRUÇÃO
+                    {% elif empreendimento.status == 'pronto' %}
+                        PRONTO PARA MORAR
+                    {% elif empreendimento.status == 'financiado' %}
+                        FINANCIADO
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="info-badges">
+                <div class="info-badge">
+                    <i class="fas fa-bed"></i>
+                    <span>{{ empreendimento.suites }}</span>
+                </div>
+                <div class="info-badge">
+                    <i class="fas fa-ruler-combined"></i>
+                    <span>{{ empreendimento.area }}</span>
+                </div>
+                <div class="info-badge">
+                    <i class="fas fa-car"></i>
+                    <span>{{ empreendimento.vagas }}</span>
+                </div>
+                <div class="info-badge">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Entrega: {{ empreendimento.data_entrega if empreendimento.data_entrega else 'A definir' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Galeria de imagens -->
+        <div class="galeria-imagens">
+            <div class="imagem-principal">
+                <img src="{{ empreendimento.image }}" alt="{{ empreendimento.nome }}" id="imagem-principal">
+            </div>
+            <div class="imagens-thumbnails">
+                <img src="{{ empreendimento.image }}" alt="Fachada" onclick="trocarImagem(this.src)" class="active">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=250&fit=crop" alt="Área comum" onclick="trocarImagem(this.src)">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&h=250&fit=crop" alt="Apartamento" onclick="trocarImagem(this.src)">
+                <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=400&h=250&fit=crop" alt="Lazer" onclick="trocarImagem(this.src)">
+            </div>
+        </div>
+
+        <!-- Informações principais -->
+        <div class="info-grid">
+            <div class="info-principais">
+                <h2>Informações Principais</h2>
+                <div class="info-items">
+                    <div class="info-item">
+                        <i class="fas fa-bed"></i>
+                        <span>{{ empreendimento.suites }}</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-ruler-combined"></i>
+                        <span>{{ empreendimento.area }}</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-car"></i>
+                        <span>{{ empreendimento.vagas }}</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Entrega: {{ empreendimento.data_entrega if empreendimento.data_entrega else 'A definir' }}</span>
+                    </div>
+                </div>
+                
+                <div class="progresso-obra">
+                    <h3>Progresso da Obra</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-{{ empreendimento.id }}"></div>
+                    </div>
+                    <span class="progress-text">{{ empreendimento.porcentagemObra }}% concluído</span>
+                </div>
+            </div>
+
+            <div class="info-preco">
+                <h2>Investimento</h2>
+                <div class="preco-destaque">
+                    <span class="preco">{{ empreendimento.preco_formatado }}</span>
+                    {% if empreendimento.financiamento %}
+                        <span class="financiamento">
+                            <i class="fas fa-check-circle"></i>
+                            Financiamento disponível
+                        </span>
+                    {% endif %}
+                </div>
+                
+                <div class="acoes">
+                    <button class="btn-interesse" onclick="mostrarFormularioInteresse()">
+                        <i class="fas fa-heart"></i>
+                        TENHO INTERESSE
+                    </button>
+                    <button class="btn-whatsapp" onclick="contatarWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        FALAR NO WHATSAPP
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="descricao-section">
+            <h2>Sobre o Empreendimento</h2>
+            <p>{{ empreendimento.descricao }}</p>
+        </div>
+
+        <!-- Características -->
+        <div class="caracteristicas-section">
+            <h2>Características e Diferenciais</h2>
+            <div class="caracteristicas-grid">
+                {% for caracteristica in empreendimento.caracteristicas %}
+                <div class="caracteristica-item">
+                    <i class="fas fa-check"></i>
+                    <span>{{ caracteristica }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal de interesse -->
+<div id="modal-interesse" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+        <h2>Demonstrar Interesse</h2>
+        <form id="form-interesse">
+            <input type="hidden" name="empreendimento_id" value="{{ empreendimento.id }}">
+            
+            <div class="form-group">
+                <label for="nome">Nome completo *</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefone">Telefone *</label>
+                <input type="tel" id="telefone" name="telefone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email">
+            </div>
+            
+            <button type="submit" class="btn-submit">
+                REGISTRAR INTERESSE
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+function trocarImagem(src) {
+    document.getElementById('imagem-principal').src = src;
+    
+    // Atualizar thumbnail ativo
+    document.querySelectorAll('.imagens-thumbnails img').forEach(img => {
+        img.classList.remove('active');
+    });
+    event.target.classList.add('active');
+}
+
+function mostrarFormularioInteresse() {
+    document.getElementById('modal-interesse').style.display = 'block';
+}
+
+function fecharModal() {
+    document.getElementById('modal-interesse').style.display = 'none';
+}
+
+function contatarWhatsApp() {
+    const message = `Olá! Tenho interesse no empreendimento {{ empreendimento.nome }} em {{ empreendimento.bairro.title() }}. Gostaria de mais informações.`;
+    const whatsappUrl = `https://wa.me/5531999999999?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Fechar modal clicando fora
+window.onclick = function(event) {
+    const modal = document.getElementById('modal-interesse');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Submissão do formulário de interesse
+document.getElementById('form-interesse').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+    
+    try {
+        const response = await fetch('/api/interesse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert('Interesse registrado com sucesso! Entraremos em contato em breve.');
+            fecharModal();
+            this.reset();
+        } else {
+            alert('Erro ao registrar interesse: ' + result.message);
+        }
+    } catch (error) {
+        alert('Erro ao registrar interesse. Tente novamente.');
+    }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const progressBar = document.getElementById('progress-{{ empreendimento.id }}');
+    if (progressBar) {
+        progressBar.style.width = '{{ empreendimento.porcentagemObra }}%';
+    }
+});
+</script>
+
+{% endblock %}

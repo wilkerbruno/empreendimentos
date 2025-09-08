@@ -29,7 +29,7 @@ EMPREENDIMENTOS = [
             "Playground",
             "Portaria 24h"
         ],
-        "data_entrega": "2025-12-01",
+        "data_entrega": "12/2025",
         "financiamento": True,
         "construtora": "Prime Construtora"
     },
@@ -308,6 +308,16 @@ def get_filtros():
         }
     })
 
+@app.route('/empreendimento/<int:empreendimento_id>')
+def detalhes_empreendimento(empreendimento_id):
+    """Página de detalhes de um empreendimento específico"""
+    empreendimento = next((e for e in EMPREENDIMENTOS if e['id'] == empreendimento_id), None)
+    
+    if not empreendimento:
+        return render_template('404.html'), 404
+    
+    return render_template('detalhes.html', empreendimento=empreendimento)
+
 @app.route('/api/stats')
 def get_stats():
     """Retorna estatísticas dos empreendimentos"""
@@ -346,3 +356,4 @@ def internal_error(error):
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+    

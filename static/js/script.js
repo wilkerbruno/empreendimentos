@@ -361,16 +361,15 @@ function clearFilters() {
 function verDetalhes(id) {
     const empreendimento = empreendimentos.find(emp => emp.id === id);
     if (empreendimento) {
-        // Simular envio para WhatsApp
-        const message = `Olá! Tenho interesse no empreendimento ${empreendimento.nome} em ${empreendimento.bairro.toUpperCase()}. Gostaria de mais informações.`;
-        const whatsappUrl = `https://wa.me/5531999999999?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
+        // Redirecionar para página de detalhes
+        window.location.href = `/empreendimento/${id}`;
         
         // Analytics
         if (window.gtag) {
             gtag('event', 'click', {
                 'event_category': 'Empreendimento',
-                'event_label': empreendimento.nome
+                'event_label': empreendimento.nome,
+                'event_action': 'ver_detalhes'
             });
         }
     }
