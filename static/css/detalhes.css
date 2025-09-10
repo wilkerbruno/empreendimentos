@@ -31,13 +31,13 @@
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, #f39c12, #e67e22, #d35400);
+    background: linear-gradient(90deg, #bc9a42, #a18737, #8f742f);
     animation: gradientShift 3s ease-in-out infinite;
 }
 
 @keyframes gradientShift {
-    0%, 100% { background: linear-gradient(90deg, #f39c12, #e67e22, #d35400); }
-    50% { background: linear-gradient(90deg, #d35400, #f39c12, #e67e22); }
+    0%, 100% { background: linear-gradient(90deg, #bc9a42, #a18737, #8f742f); }
+    50% { background: linear-gradient(90deg, #8f742f, #bc9a42, #a18737); }
 }
 
 .header-content {
@@ -54,7 +54,7 @@
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, #f39c12, #e67e22);
+    background: linear-gradient(90deg, #bc9a42, #a18737);
     border-radius: 2px;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .empreendimento-subtitle i {
-    color: #f39c12;
+    color: #bc9a42;
     font-size: 1.3rem;
 }
 
@@ -140,7 +140,7 @@
 }
 
 .status-em-construcao {
-    background: linear-gradient(135deg, #f39c12, #e67e22);
+    background: linear-gradient(135deg, #bc9a42, #a18737);
 }
 
 .status-pronto {
@@ -161,12 +161,12 @@
 }
 
 .info-badge {
-    background: rgba(243, 156, 18, 0.1);
-    color: #f39c12;
+    background: rgba(188, 154, 66, 0.1);
+    color: #bc9a42;
     padding: 0.75rem 1.5rem;
     border-radius: 25px;
     font-weight: 600;
-    border: 2px solid rgba(243, 156, 18, 0.2);
+    border: 2px solid rgba(188, 154, 66, 0.2);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -174,8 +174,8 @@
 }
 
 .info-badge:hover {
-    background: rgba(243, 156, 18, 0.2);
-    border-color: rgba(243, 156, 18, 0.4);
+    background: rgba(188, 154, 66, 0.2);
+    border-color: rgba(188, 154, 66, 0.4);
     transform: translateY(-2px);
 }
 
@@ -217,11 +217,11 @@
 }
 
 .breadcrumb-item a:hover {
-    color: #f39c12;
+    color: #bc9a42;
 }
 
 .breadcrumb-item.active {
-    color: #f39c12;
+    color: #bc9a42;
     font-weight: 600;
 }
 
@@ -281,15 +281,15 @@
 .imagens-thumbnails img:hover {
     opacity: 1;
     transform: translateY(-5px);
-    border-color: #f39c12;
-    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3);
+    border-color: #bc9a42;
+    box-shadow: 0 8px 25px rgba(188, 154, 66, 0.3);
 }
 
 .imagens-thumbnails img.active {
-    border-color: #f39c12;
+    border-color: #bc9a42;
     opacity: 1;
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+    box-shadow: 0 5px 15px rgba(188, 154, 66, 0.4);
 }
 
 /* ========================================
@@ -327,7 +327,7 @@
     content: '';
     width: 4px;
     height: 30px;
-    background: linear-gradient(135deg, #f39c12, #e67e22);
+    background: linear-gradient(135deg, #bc9a42, #a18737);
     border-radius: 2px;
 }
 
@@ -346,7 +346,7 @@
     padding: 1.5rem;
     background: linear-gradient(135deg, #f8f9fa, #ecf0f1);
     border-radius: 12px;
-    border-left: 5px solid #f39c12;
+    border-left: 5px solid #bc9a42;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -370,11 +370,11 @@
 .info-item:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    border-left-color: #e67e22;
+    border-left-color: #a18737;
 }
 
 .info-item i {
-    color: #f39c12;
+    color: #bc9a42;
     font-size: 1.5rem;
     width: 25px;
     text-align: center;
@@ -424,7 +424,7 @@
 
 .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, #f39c12, #e67e22, #d35400);
+    background: linear-gradient(90deg, #bc9a42, #a18737, #8f742f);
     transition: width 2s ease;
     border-radius: 15px;
     position: relative;
@@ -462,7 +462,7 @@
     position: sticky;
     top: 2rem;
     height: fit-content;
-    border: 2px solid #f39c12;
+    border: 2px solid #bc9a42;
 }
 
 .preco-destaque {
@@ -477,7 +477,7 @@
     display: block;
     font-size: 3rem;
     font-weight: 900;
-    color: #f39c12;
+    color: #bc9a42;
     margin-bottom: 0.5rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
@@ -603,7 +603,7 @@
     left: 0;
     width: 60px;
     height: 4px;
-    background: linear-gradient(135deg, #f39c12, #e67e22);
+    background: linear-gradient(135deg, #bc9a42, #a18737);
     border-radius: 2px;
 }
 
@@ -771,14 +771,14 @@
 
 .form-group input:focus {
     outline: none;
-    border-color: #f39c12;
+    border-color: #bc9a42;
     background: white;
-    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+    box-shadow: 0 0 0 3px rgba(188, 154, 66, 0.1);
 }
 
 .btn-submit {
     width: 100%;
-    background: linear-gradient(135deg, #f39c12, #e67e22);
+    background: linear-gradient(135deg, #bc9a42, #a18737);
     color: white;
     border: none;
     padding: 1.25rem;
@@ -789,13 +789,13 @@
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+    box-shadow: 0 4px 15px rgba(188, 154, 66, 0.3);
 }
 
 .btn-submit:hover {
-    background: linear-gradient(135deg, #e67e22, #d35400);
+    background: linear-gradient(135deg, #a18737, #8f742f);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+    box-shadow: 0 6px 20px rgba(188, 154, 66, 0.4);
 }
 
 /* ========================================
@@ -1000,8 +1000,8 @@
     bottom: 0;
     opacity: 0.03;
     background-image: 
-        radial-gradient(circle at 25% 25%, #f39c12 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, #e67e22 1px, transparent 1px);
+        radial-gradient(circle at 25% 25%, #bc9a42 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, #a18737 1px, transparent 1px);
     background-size: 50px 50px;
     background-position: 0 0, 25px 25px;
 }

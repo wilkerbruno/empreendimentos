@@ -23,7 +23,7 @@
 
 /* Efeito hover no hamburger */
 .hamburger:hover span {
-    background: #f39c12;
+    background: #bc9a42;
 }
 
 /* RESPONSIVE - MENU MOBILE */
@@ -97,7 +97,7 @@
     }
 
     .nav-menu a:hover {
-        background: #f39c12 !important;
+        background: #bc9a42 !important;
         color: white !important;
         transform: translateX(-5px) !important;
     }
@@ -105,7 +105,7 @@
     /* Animação do hamburger para X */
     .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(6px, 6px);
-        background: #f39c12;
+        background: #bc9a42;
     }
 
     .hamburger.active span:nth-child(2) {
@@ -115,7 +115,7 @@
 
     .hamburger.active span:nth-child(3) {
         transform: rotate(-45deg) translate(6px, -6px);
-        background: #f39c12;
+        background: #bc9a42;
     }
 
     /* Overlay quando menu está aberto */
