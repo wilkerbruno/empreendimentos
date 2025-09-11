@@ -603,7 +603,7 @@
     left: 0;
     width: 60px;
     height: 4px;
-    background: linear-gradient(135deg, #bc9a42, #a18737);
+    background-color: #bc9a42;
     border-radius: 2px;
 }
 
@@ -778,7 +778,7 @@
 
 .btn-submit {
     width: 100%;
-    background: linear-gradient(135deg, #bc9a42, #a18737);
+    background-color: #bc9a42;
     color: white;
     border: none;
     padding: 1.25rem;
@@ -793,7 +793,7 @@
 }
 
 .btn-submit:hover {
-    background: linear-gradient(135deg, #a18737, #8f742f);
+    background-color: #bc9a42;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(188, 154, 66, 0.4);
 }

@@ -260,7 +260,7 @@ function createEmpreendimentoCard(empreendimento) {
             </div>
             
             <div class="card-price">
-                <strong style="color: #f39c12; font-size: 1.2rem;">${empreendimento.preco}</strong>
+                <strong style="color: #bc9a42; font-size: 1.2rem;">${empreendimento.preco}</strong>
             </div>
             <button class="card-button" onclick="verDetalhes(${empreendimento.id})">
                 VER DETALHES

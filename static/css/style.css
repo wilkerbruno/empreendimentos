@@ -45,10 +45,7 @@ body {
     gap: 10px;
 }
 
-.logo {
-    width: 40px;
-    height: 40px;
-}
+
 
 .brand-text {
     font-size: 1.5rem;
@@ -296,6 +293,11 @@ body {
         width: 250px;
         padding: 12px 30px;
     }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -315,6 +317,11 @@ body {
     .btn-clear, .btn-search {
         width: 200px;
         font-size: 0.9rem;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
     }
 }
 
