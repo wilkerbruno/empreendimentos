@@ -1,0 +1,95 @@
+ /* Container da splash */
+    #splash {
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--bg);
+      z-index:9999;
+    }
+
+    /* Caixa da logo para manter proporção */
+    .logo-wrap {
+      width:420px;
+      max-width:70vw;
+      height:auto;
+      position:relative;
+    }
+
+    /* SVG ocupa toda a caixa */
+    svg {
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* Paths que desenham (stroke) */
+    .trace {
+      fill:transparent;
+      stroke:var(--gold-fill);
+      stroke-width:6;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      /* um valor grande para dasharray; será animado reduzindo o dashoffset */
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.15));
+    }
+
+    /* Texto (traço mais fino) */
+    .trace-text {
+      stroke-width:5;
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+    }
+
+    /* Quando a animação terminar, mantemos stroke/dados com offset 0 */
+    .drawn {
+      stroke-dashoffset: 0 !important;
+    }
+
+    /* Animações via keyframes (aplicadas via classes com delay) */
+    @keyframes drawIcon {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes drawText {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Imagem final (oculta no começo) */
+    .logo-image {
+      position:absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      opacity:0;
+      transition: opacity 0.8s ease 0.0s;
+      /* damos um leve filtro dourado para harmonizar */
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+    }
+
+    .logo-visible {
+      opacity:1 !important;
+    }
+
+    /* Opcional: pequena animação de "pop" ao completar */
+    .final-pop {
+      transform-origin:center;
+      animation: pop 0.45s cubic-bezier(.2,.9,.3,1);
+    }
+    @keyframes pop {
+      0%{ transform: scale(0.98); }
+      60%{ transform: scale(1.02); }
+      100%{ transform: scale(1); }
+    }
+
+    /* Texto de carregamento (ex.: oculto por padrão) */
+    .loading-caption {
+      text-align:center;
+      margin-top:12px;
+      color:#666;
+      font-size:14px;
+    }
