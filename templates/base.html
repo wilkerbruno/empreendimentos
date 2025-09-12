@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Construtora Divisions{% endblock %}</title>
+    <title>{% block title %}ROSSI & MARTINS Construtora{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu_hamburguer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/animacao_logo.css') }}">
@@ -14,7 +14,6 @@
 </head>
 
 <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -283,10 +282,65 @@
         .hamburger:hover span {
             background: #eccd7e;
         }
-    
-
 </style>
 
+<body>
+    <!-- Splash Screen com Animação da Logo -->
+    <div id="splash">
+        <div class="logo-wrap" aria-hidden="true">
+            <!-- SVG com paths que simulam o traçado da logo -->
+            <svg viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                <!-- Círculo externo -->
+                <path id="logo-circle"
+                      class="trace trace-circle"
+                      d="M250 80
+                         A 170 170 0 1 1 249.9 80"
+                />
+
+                <!-- Letra R -->
+                <path id="logo-r"
+                      class="trace trace-letters"
+                      d="M180 350 L180 180
+                         L230 180 C260 180 275 195 275 220
+                         C275 245 260 255 230 255 L195 255
+                         M230 255 L270 350"
+                />
+
+                <!-- Letra M -->
+                <path id="logo-m"
+                      class="trace trace-letters"
+                      d="M300 180 L300 350
+                         M300 180 L330 240 L360 180
+                         M360 180 L360 350"
+                />
+
+                <!-- Texto ROSSI & MARTINS (linha principal) -->
+                <path id="text-rossi"
+                      class="trace trace-text"
+                      d="M90 390 L200 390"
+                />
+                
+                <path id="text-martins"
+                      class="trace trace-text"
+                      d="M220 390 L410 390"
+                />
+
+                <!-- Texto CONSTRUTORA -->
+                <path id="text-construtora"
+                      class="trace trace-text"
+                      d="M150 420 L350 420"
+                />
+            </svg>
+
+            <!-- Imagem final (SVG completa) -->
+            <img id="logoImage" 
+                 class="logo-image" 
+                 src="{{ url_for('static', filename='images/logo_completa.svg') }}" 
+                 alt="Rossi & Martins Construtora" />
+        </div>
+
+        <div class="loading-caption">CARREGANDO...</div>
+    </div>
 
     <!-- Header -->
     <header class="header">
@@ -316,54 +370,6 @@
         {% block content %}{% endblock %}
     </main>
 
-    <div id="splash">
-    <div class="logo-wrap" aria-hidden="true">
-      <!-- SVG com paths que simulam o traçado do ícone RM e do texto.
-           A imagem real da logo (PNG) ficará por trás e será exibida ao final. -->
-      <svg viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-        <!-- Grupo para posicionamento central -->
-        <g transform="translate(0,0)">
-          <!-- Caminho que desenha o círculo externo (ícone) -->
-          <path id="icon-circle"
-                class="trace"
-                d="M250 60
-                   A 140 140 0 1 1 249.9 60"
-                />
-
-          <!-- Traço que simula o 'R' + base do 'M' — simplificado para efeito de desenho -->
-          <path id="icon-rm"
-                class="trace"
-                d="M175 340 L175 170
-                   L230 170 C255 170 265 185 265 200
-                   C265 215 255 225 230 225 L200 225
-                   M230 225 L260 340
-                   M300 170 L330 225 L360 170 L360 340"
-                />
-
-          <!-- Traço para o texto (linha que percorre onde as letras estão) -->
-          <path id="text-line"
-                class="trace trace-text"
-                d="M90 385 L410 385"
-                />
-
-          <!-- Outras linhas textuais para dar sensação de 'desenho' do nome -->
-          <path id="text-decor"
-                class="trace trace-text"
-                d="M120 410 L380 410"
-                />
-        </g>
-      </svg>
-
-      <!-- Imagem final (PNG). Substitua o src abaixo pelo caminho da sua imagem -->
-      <img id="logoImage" class="logo-image" src="/static/images/logo_completa.png" alt="Rossi & Martins Construtora" />
-    </div>
-
-    <!-- opcional legenda -->
-    <!-- <div class="loading-caption">Carregando — Rossi & Martins</div> -->
-  </div>
-
-
-
     <!-- WhatsApp Float Button -->
     <div class="whatsapp-float">
         <a href="https://wa.me/5531999999999" target="_blank">
@@ -376,7 +382,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>DIVISIONS CONSULTORIAS</h3>
+                    <h3>ROSSI & MARTINS CONSTRUTORA</h3>
                     <p>Transformando sonhos em realidade há mais de 20 anos.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -388,7 +394,7 @@
                 <div class="footer-section">
                     <h4>Contato</h4>
                     <p><i class="fas fa-phone"></i> (31) 3333-4445</p>
-                    <p><i class="fas fa-envelope"></i> contato@divisionsconsultorias.com.br</p>
+                    <p><i class="fas fa-envelope"></i> contato@rossimartins.com.br</p>
                     <p><i class="fas fa-map-marker-alt"></i> Belo Horizonte, MG</p>
                 </div>
                 
@@ -404,10 +410,11 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Divisions Consultorias. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Rossi & Martins Construtora. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
+
     <script src="{{ url_for('static', filename='js/menu_hamburguer.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/animacao_logo.js') }}"></script>
